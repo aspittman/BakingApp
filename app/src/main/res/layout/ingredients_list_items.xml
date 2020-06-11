@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/quantity_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:fontFamily="cursive"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorLightPeach"
+        android:gravity="fill" />
+
+    <TextView
+        android:id="@+id/measure_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:fontFamily="cursive"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorLightPeach"
+        android:gravity="fill"
+        android:layout_below="@id/quantity_text"/>
+
+    <TextView
+        android:id="@+id/ingredients_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:fontFamily="cursive"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorLightPeach"
+        android:gravity="fill"
+        android:layout_below="@id/measure_text"/>
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.affinityapps.bakingapp.home;
+package com.affinityapps.bakingapp.recipes;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.affinityapps.bakingapp.MainScreen.MainActivity;
-import com.affinityapps.bakingapp.MainScreen.RecipeCardAdapter;
-import com.affinityapps.bakingapp.MasterDetailScreen.RecipeMasterActivity;
+import com.affinityapps.bakingapp.steps.RecipeMasterActivity;
 import com.affinityapps.bakingapp.R;
 import com.affinityapps.bakingapp.RecipeCard;
 import com.android.volley.Request;
@@ -28,9 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class FragmentHome extends Fragment
+public class RecipeFragment extends Fragment
         implements RecipeCardAdapter.OnRecipeClickListener {
 
     private Context context;
@@ -45,7 +42,7 @@ public class FragmentHome extends Fragment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.home_fragment, container, false);
+        View root = inflater.inflate(R.layout.fragment_recipe, container, false);
 
 
         recipeCardArrayList = new ArrayList<>();
@@ -63,7 +60,7 @@ public class FragmentHome extends Fragment
 
     private void parseRecipeCardData() {
 
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, FragmentHome.bakingUrl, null,
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, RecipeFragment.bakingUrl, null,
                 response -> {
                     try {
 

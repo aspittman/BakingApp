@@ -5,11 +5,17 @@
     <string name="next_selection">Next</string>
 
 <!--Navigation Drawer-->
-    <string name="menu_home">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Baking App</string>
+    <string name="nav_header_subtitle">App displays popular recipes with instructions</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+<!--Navigation Drawer Options -->
+    <string name="menu_recipes">Recipes</string>
+    <string name="menu_steps">Steps</string>
+    <string name="menu_ingredients">Ingredients</string>
+    <string name="menu_instructions">Instructions</string>
+
 </resources>

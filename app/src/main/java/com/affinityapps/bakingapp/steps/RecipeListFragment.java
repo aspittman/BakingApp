@@ -1,4 +1,4 @@
-package com.affinityapps.bakingapp.MasterDetailScreen;
+package com.affinityapps.bakingapp.steps;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.affinityapps.bakingapp.IngredientsScreen.IngredientsListActivity;
+import com.affinityapps.bakingapp.ingredients.IngredientsListActivity;
 import com.affinityapps.bakingapp.R;
 import com.affinityapps.bakingapp.RecipeCard;
 import com.android.volley.Request;
@@ -28,9 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-import static com.affinityapps.bakingapp.home.FragmentHome.EXTRA_ID;
+import static com.affinityapps.bakingapp.recipes.RecipeFragment.EXTRA_ID;
 
 
 public class RecipeListFragment extends Fragment
@@ -127,12 +125,9 @@ public class RecipeListFragment extends Fragment
 
                         recipeListFragmentAdapter = new RecipeListFragmentAdapter(getActivity(), recipeFragmentArrayList);
                         recyclerView.setAdapter(recipeListFragmentAdapter);
-                        recipeListFragmentAdapter.setOnRecipeFragmentClickListener(new RecipeListFragmentAdapter.OnRecipeFragmentClickListener() {
-                            @Override
-                            public void onRecipeFragmentClick(int position) {
-                                listFragmentTransfer.recipeListInputSent(position, recipeDescriptionArrayList.get(position), recipeVideoUrlArrayList.get(position));
-                            }
-                        });
+                        recipeListFragmentAdapter.setOnRecipeFragmentClickListener(position -> listFragmentTransfer.
+                                recipeListInputSent(position, recipeDescriptionArrayList.get(position),
+                                        recipeVideoUrlArrayList.get(position)));
 
 
                     } catch (JSONException e) {

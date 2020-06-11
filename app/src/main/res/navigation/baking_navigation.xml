@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/baking_navigation"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/nav_home">
+    android:id="@+id/baking_navigation"
+    app:startDestination="@+id/nav_recipes">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.affinityapps.bakingapp.home.FragmentHome"
-        android:label="@string/menu_home"
-        tools:layout="@layout/home_fragment">
+        android:id="@+id/nav_recipes"
+        android:name="com.affinityapps.bakingapp.recipes.RecipeFragment"
+        android:label="@string/menu_recipes"
+        tools:layout="@layout/fragment_recipe"/>
 
-    </fragment>
+    <fragment
+        android:id="@+id/nav_steps"
+        android:name="com.affinityapps.bakingapp.steps.RecipeListFragment"
+        android:label="@string/menu_steps"
+        tools:layout="@layout/fragment_recipe_list" />
 
-<!--    <fragment-->
-<!--        android:id="@+id/nav_gallery"-->
-<!--        android:name="com.affinityapps.navigationdrawerexample.ui.gallery.GalleryFragment"-->
-<!--        android:label="@string/menu_gallery"-->
-<!--        tools:layout="@layout/fragment_gallery" />-->
+    <fragment
+        android:id="@+id/nav_ingredients"
+        android:name="com.affinityapps.bakingapp.ingredients.IngredientsListFragment"
+        android:label="@string/menu_ingredients"
+        tools:layout="@layout/fragment_ingredients_list" />
 
-<!--    <fragment-->
-<!--        android:id="@+id/nav_slideshow"-->
-<!--        android:name="com.affinityapps.navigationdrawerexample.ui.slideshow.SlideshowFragment"-->
-<!--        android:label="@string/menu_slideshow"-->
-<!--        tools:layout="@layout/fragment_slideshow" />-->
+    <fragment
+        android:id="@+id/nav_instructions"
+        android:name="com.affinityapps.bakingapp.instructions.RecipeDetailFragment"
+        android:label="@string/menu_instructions"
+        tools:layout="@layout/fragment_recipe_detail" />
 </navigation>

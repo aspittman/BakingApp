@@ -15,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="m">
-        <activity android:name=".MasterDetailScreen.RecipeDetailActivity"></activity>
-        <activity android:name=".IngredientsScreen.IngredientsListActivity" />
-        <activity android:name=".MasterDetailScreen.RecipeMasterActivity" />
-        <activity android:name=".MainScreen.MainActivity">
+        <activity android:name=".instructions.RecipeDetailActivity"></activity>
+        <activity android:name=".ingredients.IngredientsListActivity" />
+        <activity android:name=".steps.RecipeMasterActivity" />
+        <activity android:name=".recipes.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

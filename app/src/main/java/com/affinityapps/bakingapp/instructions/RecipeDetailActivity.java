@@ -1,17 +1,16 @@
-package com.affinityapps.bakingapp.MasterDetailScreen;
+package com.affinityapps.bakingapp.instructions;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import com.affinityapps.bakingapp.R;
 
-import static com.affinityapps.bakingapp.MasterDetailScreen.RecipeMasterActivity.EXTRA_DESCRIPTION;
-import static com.affinityapps.bakingapp.MasterDetailScreen.RecipeMasterActivity.EXTRA_VIDEO_URL;
+import static com.affinityapps.bakingapp.steps.RecipeMasterActivity.EXTRA_DESCRIPTION;
+import static com.affinityapps.bakingapp.steps.RecipeMasterActivity.EXTRA_VIDEO_URL;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
@@ -43,7 +42,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
         bundle.putString("videoUrlTransfer", videoUrl);
         recipeDetailFragment.setArguments(bundle);
 
-        navigationSetUp();
+//        navigationSetUp();
     }
 
     public void navigationSetUp() {

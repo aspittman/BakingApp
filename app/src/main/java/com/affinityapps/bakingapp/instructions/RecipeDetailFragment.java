@@ -1,13 +1,10 @@
-package com.affinityapps.bakingapp.MasterDetailScreen;
+package com.affinityapps.bakingapp.instructions;
 
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,8 +20,6 @@ import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-
-import java.util.Objects;
 
 public class RecipeDetailFragment extends Fragment {
 
@@ -51,7 +46,7 @@ public class RecipeDetailFragment extends Fragment {
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(getActivity());
         playerView.setPlayer(simpleExoPlayer);
 
-        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(Objects.requireNonNull(getActivity()),
+        DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(requireActivity(),
                 Util.getUserAgent(getActivity(), "appname"));
         MediaSource videoSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(finalVideoUrl));
 

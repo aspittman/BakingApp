@@ -1,4 +1,4 @@
-package com.affinityapps.bakingapp.MasterDetailScreen;
+package com.affinityapps.bakingapp.steps;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,25 +1,13 @@
-package com.affinityapps.bakingapp.MasterDetailScreen;
+package com.affinityapps.bakingapp.steps;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.affinityapps.bakingapp.R;
-import com.affinityapps.bakingapp.RecipeCard;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import static com.affinityapps.bakingapp.MasterDetailScreen.RecipeListFragment.EXTRA_DESCRIPTION;
-import static com.affinityapps.bakingapp.MasterDetailScreen.RecipeListFragment.EXTRA_VIDEO_URL;
+import com.affinityapps.bakingapp.instructions.RecipeDetailActivity;
 
 public class RecipeMasterActivity extends AppCompatActivity
         implements RecipeListFragment.RecipeListFragmentTransfer {

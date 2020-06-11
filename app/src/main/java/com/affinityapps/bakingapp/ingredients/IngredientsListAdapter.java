@@ -1,4 +1,4 @@
-package com.affinityapps.bakingapp.IngredientsScreen;
+package com.affinityapps.bakingapp.ingredients;
 
 import android.content.Context;
 import android.view.LayoutInflater;

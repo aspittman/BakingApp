@@ -18,10 +18,10 @@
         android:icon="@drawable/ic_restaurant_menu_black_24dp"
         android:title="@string/menu_ingredients" />
 
-    <item
-        android:id="@+id/nav_instructions"
-        android:icon="@drawable/ic_view_list_black_24dp"
-        android:title="@string/menu_instructions" />
+<!--    <item-->
+<!--        android:id="@+id/nav_instructions"-->
+<!--        android:icon="@drawable/ic_view_list_black_24dp"-->
+<!--        android:title="@string/menu_instructions" />-->
 
 
 

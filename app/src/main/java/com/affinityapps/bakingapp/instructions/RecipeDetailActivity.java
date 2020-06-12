@@ -49,8 +49,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
         previousButton = findViewById(R.id.previous_button);
         previousButton.setOnClickListener(v -> {
             Bundle arguments = new Bundle();
-            arguments.putString(RecipeDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(RecipeDetailFragment.ARG_ITEM_ID));
+            arguments.putString("descriptionTransfer", description);
+            arguments.putString("videoUrlTransfer", videoUrl);
 
             RecipeDetailFragment fragment = new RecipeDetailFragment();
             fragment.setArguments(arguments);
@@ -61,8 +61,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
         nextButton = findViewById(R.id.next_button);
         nextButton.setOnClickListener(v -> {
             Bundle arguments = new Bundle();
-            arguments.putString(RecipeDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(RecipeDetailFragment.ARG_ITEM_ID));
+            arguments.putString("descriptionTransfer", description);
+            arguments.putString("videoUrlTransfer", description);
 
             RecipeDetailFragment fragment = new RecipeDetailFragment();
             fragment.setArguments(arguments);

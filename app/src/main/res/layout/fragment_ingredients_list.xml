@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ingredients.IngredientsListActivity">
+    tools:context=".ingredients.IngredientsListFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView

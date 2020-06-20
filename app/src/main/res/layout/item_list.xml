@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".master.RecipeListActivity">
+
+    <TextView
+        android:id="@+id/recipe_ingredients_text"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorDarkPeach"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="@string/ingredients_title"
+        android:textColor="@color/colorWhite"
+        android:textSize="55sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/recipe_master_recyclerview"
+        android:name="com.affinityapps.masterdetailexample.ItemListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/recipe_ingredients_text"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".master.RecipeListActivity"
+        tools:listitem="@layout/master_list_items" />
+
+</RelativeLayout>

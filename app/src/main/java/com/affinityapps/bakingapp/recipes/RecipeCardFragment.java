@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.affinityapps.bakingapp.steps.RecipeMasterActivity;
+import com.affinityapps.bakingapp.master.RecipeListActivity;
 import com.affinityapps.bakingapp.R;
 import com.affinityapps.bakingapp.RecipeCard;
 import com.android.volley.Request;
@@ -27,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class RecipeFragment extends Fragment
+public class RecipeCardFragment extends Fragment
         implements RecipeCardAdapter.OnRecipeClickListener {
 
     private Context context;
@@ -60,7 +60,7 @@ public class RecipeFragment extends Fragment
 
     private void parseRecipeCardData() {
 
-        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, RecipeFragment.bakingUrl, null,
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, RecipeCardFragment.bakingUrl, null,
                 response -> {
                     try {
 
@@ -87,7 +87,7 @@ public class RecipeFragment extends Fragment
 
     @Override
     public void onRecipeClick(int position) {
-        Intent intent = new Intent(getActivity(), RecipeMasterActivity.class);
+        Intent intent = new Intent(getActivity(), RecipeListActivity.class);
         RecipeCard recipeCard = recipeCardArrayList.get(position);
 
         intent.putExtra(EXTRA_ID, recipeCard.getRecipeCardId() -1);

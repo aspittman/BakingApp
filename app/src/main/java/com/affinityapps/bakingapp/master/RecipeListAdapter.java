@@ -1,6 +1,9 @@
-package com.affinityapps.bakingapp.steps;
+package com.affinityapps.bakingapp.master;
 
+import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +15,39 @@ import com.affinityapps.bakingapp.R;
 import com.affinityapps.bakingapp.RecipeCard;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class RecipeListFragmentAdapter extends RecyclerView.Adapter<RecipeListFragmentAdapter.RecipeListFragmentViewHolder> {
+public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeListFragmentViewHolder> {
 
     private ArrayList<RecipeCard> recipeFragmentArrayList;
     private Context context;
     private OnRecipeFragmentClickListener listener;
+    private RecipeListActivity parentActivity;
+    private List<RecipeCard> recipeCardList;
+    private boolean twoPaneController;
 
+
+    private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            RecipeCard item = (RecipeCard) view.getTag();
+            if (twoPaneController) {
+                Bundle arguments = new Bundle();
+                arguments.putString(RecipeDetailFragment.ARG_ITEM_ID, position);
+                RecipeDetailFragment fragment = new RecipeDetailFragment();
+                fragment.setArguments(arguments);
+                parentActivity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.item_detail_container, fragment)
+                        .commit();
+            } else {
+                Context context = view.getContext();
+                Intent intent = new Intent(context, RecipeDetailActivity.class);
+                intent.putExtra(RecipeDetailFragment.ARG_ITEM_ID, position);
+
+                context.startActivity(intent);
+            }
+        }
+    };
 
     public interface OnRecipeFragmentClickListener {
         void onRecipeFragmentClick(int position);
@@ -29,9 +58,11 @@ public class RecipeListFragmentAdapter extends RecyclerView.Adapter<RecipeListFr
     }
 
 
-    public RecipeListFragmentAdapter(Context context, ArrayList<RecipeCard> recipeFragmentArrayList) {
-        this.recipeFragmentArrayList = recipeFragmentArrayList;
-        this.context = context;
+    public RecipeListAdapter(RecipeListActivity parentActivity, List<RecipeCard> recipeCardList, boolean twoPaneController) {
+
+        this.parentActivity = parentActivity;
+        this.recipeCardList = recipeCardList;
+        this.twoPaneController = twoPaneController;
     }
 
 
@@ -63,7 +94,7 @@ public class RecipeListFragmentAdapter extends RecyclerView.Adapter<RecipeListFr
     public RecipeListFragmentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_list_items, parent, false);
+                .inflate(R.layout.master_list_items, parent, false);
 
         return new RecipeListFragmentViewHolder(view, listener);
     }

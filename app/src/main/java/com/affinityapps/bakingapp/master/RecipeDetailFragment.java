@@ -1,5 +1,6 @@
-package com.affinityapps.bakingapp.instructions;
+package com.affinityapps.bakingapp.master;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.affinityapps.bakingapp.R;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -24,12 +23,24 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
+import java.util.Objects;
+
+import static com.affinityapps.bakingapp.master.RecipeListActivity.EXTRA_DESCRIPTION;
+import static com.affinityapps.bakingapp.master.RecipeListActivity.EXTRA_VIDEO_URL;
+
 public class RecipeDetailFragment extends Fragment {
 
+    private String description;
+    private String videoUrl;
+    private Button previousButton;
+    private Button nextButton;
+    private String finalDescription;
+    private String finalVideoUrl;
+    private Intent intent;
     private TextView fullDescriptions;
     private PlayerView playerView;
     private SimpleExoPlayer simpleExoPlayer;
-    public static final String ARG_ITEM_ID = "fragment_id";
+    public static final String ARG_ITEM_ID = "positionIdentifier";
 
     public RecipeDetailFragment() {
 
@@ -41,9 +52,9 @@ public class RecipeDetailFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
 
-        assert getArguments() != null;
-        String finalDescription = getArguments().getString("descriptionTransfer");
-        String finalVideoUrl = getArguments().getString("videoUrlTransfer");
+        intent = requireActivity().getIntent();
+        finalDescription = intent.getStringExtra(EXTRA_DESCRIPTION);
+        finalVideoUrl = intent.getStringExtra(EXTRA_VIDEO_URL);
 
         playerView = rootView.findViewById(R.id.baking_video_player);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(getActivity());

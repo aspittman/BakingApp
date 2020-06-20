@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:baselineAligned="false"
+    android:divider="?android:attr/dividerHorizontal"
+    android:orientation="horizontal"
+    android:showDividers="middle"
+    tools:context=".master.RecipeListActivity">
+
+    <!--
+    This layout is a two-pane layout for the Items
+    master/detail flow.
+    
+    -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        tools:context=".master.RecipeListActivity">
+
+    <TextView
+        android:id="@+id/recipe_ingredients_text"
+        android:layout_width="@dimen/item_width"
+        android:layout_height="150dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorDarkPeach"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="@string/ingredients_title"
+        android:textColor="@color/colorWhite"
+        android:textSize="55sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recipe_master_recyclerview"
+        android:name="com.affinityapps.masterdetailexample.ItemListFragment"
+        android:layout_width="@dimen/item_width"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@id/recipe_ingredients_text"
+        app:layoutManager="LinearLayoutManager"
+        tools:context="com.affinityapps.masterdetailexample.ItemListActivity"
+        tools:listitem="@layout/master_list_items" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/item_detail_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3" />
+
+</LinearLayout>

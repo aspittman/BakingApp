@@ -25,17 +25,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-import static com.affinityapps.bakingapp.steps.RecipeListFragment.EXTRA_TRANSFER;
+import static com.affinityapps.bakingapp.master.RecipeListActivity.EXTRA_TRANSFER;
 
 public class IngredientsListFragment extends Fragment {
 
-    private Context context;
     private RequestQueue requestQueue;
     private RecyclerView recyclerView;
     private IngredientsListAdapter ingredientsListAdapter;
-    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<RecipeCard> ingredientsArrayList;
     private static final String bakingUrl = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
 
@@ -49,7 +46,7 @@ public class IngredientsListFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.ingredients_recyclerview);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
         requestQueue = Volley.newRequestQueue(requireActivity());
@@ -57,13 +54,13 @@ public class IngredientsListFragment extends Fragment {
         return root;
     }
 
-    public void parseIngredientsListData() {
+    private void parseIngredientsListData() {
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, IngredientsListFragment.bakingUrl, null,
                 response -> {
                     try {
-                        Intent intent = requireActivity().getIntent();
 
-                        int recipeCardTransfer = intent.getIntExtra(EXTRA_TRANSFER, 0);
+                        assert getArguments() != null;
+                        int recipeCardTransfer = getArguments().getInt("transferPosition");
 
                         JSONObject jsonObject = response.getJSONObject(recipeCardTransfer);
 

@@ -7,15 +7,9 @@
 
     <fragment
         android:id="@+id/nav_recipes"
-        android:name="com.affinityapps.bakingapp.recipes.RecipeFragment"
+        android:name="com.affinityapps.bakingapp.recipes.RecipeCardFragment"
         android:label="@string/menu_recipes"
         tools:layout="@layout/fragment_recipe"/>
-
-    <fragment
-        android:id="@+id/nav_steps"
-        android:name="com.affinityapps.bakingapp.steps.RecipeListFragment"
-        android:label="@string/menu_steps"
-        tools:layout="@layout/fragment_recipe_list" />
 
     <fragment
         android:id="@+id/nav_ingredients"
@@ -25,7 +19,7 @@
 
 <!--    <fragment-->
 <!--        android:id="@+id/nav_instructions"-->
-<!--        android:name="com.affinityapps.bakingapp.instructions.RecipeDetailFragment"-->
+<!--        android:name="com.affinityapps.bakingapp.master.RecipeDetailFragment"-->
 <!--        android:label="@string/menu_instructions"-->
 <!--        tools:layout="@layout/fragment_recipe_detail" />-->
 </navigation>

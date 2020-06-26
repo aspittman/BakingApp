@@ -22,32 +22,8 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     private ArrayList<RecipeCard> recipeFragmentArrayList;
     private Context context;
     private OnRecipeFragmentClickListener listener;
-    private RecipeListActivity parentActivity;
     private List<RecipeCard> recipeCardList;
     private boolean twoPaneController;
-
-
-    private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            RecipeCard item = (RecipeCard) view.getTag();
-            if (twoPaneController) {
-                Bundle arguments = new Bundle();
-                arguments.putString(RecipeDetailFragment.ARG_ITEM_ID, position);
-                RecipeDetailFragment fragment = new RecipeDetailFragment();
-                fragment.setArguments(arguments);
-                parentActivity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.item_detail_container, fragment)
-                        .commit();
-            } else {
-                Context context = view.getContext();
-                Intent intent = new Intent(context, RecipeDetailActivity.class);
-                intent.putExtra(RecipeDetailFragment.ARG_ITEM_ID, position);
-
-                context.startActivity(intent);
-            }
-        }
-    };
 
     public interface OnRecipeFragmentClickListener {
         void onRecipeFragmentClick(int position);
@@ -58,9 +34,9 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     }
 
 
-    public RecipeListAdapter(RecipeListActivity parentActivity, List<RecipeCard> recipeCardList, boolean twoPaneController) {
+    public RecipeListAdapter(Context context, List<RecipeCard> recipeCardList, boolean twoPaneController) {
 
-        this.parentActivity = parentActivity;
+        this.context = context;
         this.recipeCardList = recipeCardList;
         this.twoPaneController = twoPaneController;
     }

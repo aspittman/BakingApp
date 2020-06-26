@@ -29,12 +29,13 @@ import java.util.ArrayList;
 import static com.affinityapps.bakingapp.recipes.RecipeCardFragment.EXTRA_ID;
 
 public class RecipeListActivity extends AppCompatActivity
-        implements View.OnClickListener{
+        implements View.OnClickListener {
 
     private RecipeCard recipeCard;
     private Boolean twoPaneController;
     private RequestQueue requestQueue;
     private RecyclerView recyclerView;
+    private RecipeListActivity parentActivity;
     private ArrayList<RecipeCard> recipeFragmentArrayList;
     private ArrayList<RecipeCard> recipeDescriptionArrayList;
     private ArrayList<RecipeCard> recipeVideoUrlArrayList;
@@ -56,31 +57,30 @@ public class RecipeListActivity extends AppCompatActivity
 
 
         if (findViewById(R.id.item_detail_container) != null) {
-
             twoPaneController = true;
-
-            recyclerView = findViewById(R.id.recipe_master_recyclerview);
-            assert recyclerView != null;
-
-            TextView recipeIngredientsTitle = findViewById(R.id.recipe_ingredients_text);
-            recipeIngredientsTitle.setOnClickListener(this);
-
-            recipeFragmentArrayList = new ArrayList<>();
-            recipeDescriptionArrayList = new ArrayList<>();
-            recipeVideoUrlArrayList = new ArrayList<>();
-
-            recyclerView = findViewById(R.id.recipe_master_recyclerview);
-            recyclerView.setHasFixedSize(true);
-
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-            recyclerView.setLayoutManager(layoutManager);
-
-            recipeListAdapter = new RecipeListAdapter(this, recipeFragmentArrayList, twoPaneController);
-            recyclerView.setAdapter(recipeListAdapter);
-
-            requestQueue = Volley.newRequestQueue(this);
-            parseStepsListData();
         }
+
+        recyclerView = findViewById(R.id.recipe_master_recyclerview);
+        assert recyclerView != null;
+
+        TextView recipeIngredientsTitle = findViewById(R.id.recipe_ingredients_text);
+        recipeIngredientsTitle.setOnClickListener(this);
+
+        recipeFragmentArrayList = new ArrayList<>();
+        recipeDescriptionArrayList = new ArrayList<>();
+        recipeVideoUrlArrayList = new ArrayList<>();
+
+        recyclerView = findViewById(R.id.recipe_master_recyclerview);
+        recyclerView.setHasFixedSize(true);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        recipeListAdapter = new RecipeListAdapter(this, recipeFragmentArrayList, twoPaneController);
+        recyclerView.setAdapter(recipeListAdapter);
+
+        requestQueue = Volley.newRequestQueue(this);
+        parseStepsListData();
     }
 
     @Override
@@ -89,7 +89,6 @@ public class RecipeListActivity extends AppCompatActivity
         intent.putExtra(EXTRA_TRANSFER, recipeCard.getRecipeCardTransfer());
         startActivity(intent);
     }
-
 
 
     private void parseStepsListData() {
@@ -123,15 +122,26 @@ public class RecipeListActivity extends AppCompatActivity
                         recyclerView.setAdapter(recipeListAdapter);
                         recipeListAdapter.setOnRecipeFragmentClickListener(position -> {
 
-                            Intent intent1 = new Intent(this, RecipeDetailActivity.class);
-                            RecipeCard recipeCard1 = recipeDescriptionArrayList.get(position);
-                            RecipeCard recipeCard2 = recipeVideoUrlArrayList.get(position);
+                            if (twoPaneController) {
+                                Bundle arguments = new Bundle();
+                                arguments.putInt(RecipeDetailFragment.TRANSFER_ID, position);
+                                RecipeDetailFragment fragment = new RecipeDetailFragment();
+                                fragment.setArguments(arguments);
+                                parentActivity.getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.item_detail_container, fragment)
+                                        .commit();
+                            } else {
+                                Intent intent1 = new Intent(this, RecipeDetailActivity.class);
+                                RecipeCard recipeCard1 = recipeDescriptionArrayList.get(position);
+                                RecipeCard recipeCard2 = recipeVideoUrlArrayList.get(position);
 
-                            intent1.putExtra(EXTRA_DESCRIPTION, recipeCard1.getRecipeCardTitles());
-                            intent1.putExtra(EXTRA_VIDEO_URL, recipeCard2.getRecipeCardTitles());
-                            startActivity(intent1);
+                                intent1.putExtra(EXTRA_DESCRIPTION, recipeCard1.getRecipeCardTitles());
+                                intent1.putExtra(EXTRA_VIDEO_URL, recipeCard2.getRecipeCardTitles());
+                                startActivity(intent1);
+
+                            }
+
                         });
-
 
                     } catch (JSONException e) {
                         e.printStackTrace();

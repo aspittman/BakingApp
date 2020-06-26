@@ -40,7 +40,7 @@ public class RecipeDetailFragment extends Fragment {
     private TextView fullDescriptions;
     private PlayerView playerView;
     private SimpleExoPlayer simpleExoPlayer;
-    public static final String ARG_ITEM_ID = "positionIdentifier";
+    public static final String TRANSFER_ID = "positionIdentifier";
 
     public RecipeDetailFragment() {
 

@@ -37,12 +37,10 @@ public class RecipeListActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     private RecipeListActivity parentActivity;
     private ArrayList<RecipeCard> recipeFragmentArrayList;
-    private ArrayList<RecipeCard> recipeDescriptionArrayList;
-    private ArrayList<RecipeCard> recipeVideoUrlArrayList;
+    private ArrayList<String> recipeDescriptionArrayList;
+    private ArrayList<String> recipeVideoUrlArrayList;
     private RecipeListAdapter recipeListAdapter;
     public static final String EXTRA_TRANSFER = "dataTransfer";
-    public static final String EXTRA_DESCRIPTION = "full_description";
-    public static final String EXTRA_VIDEO_URL = "video_link";
     private static final String bakingUrl = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
 
 
@@ -76,7 +74,7 @@ public class RecipeListActivity extends AppCompatActivity
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        recipeListAdapter = new RecipeListAdapter(this, recipeFragmentArrayList, twoPaneController);
+        recipeListAdapter = new RecipeListAdapter(this, recipeFragmentArrayList);
         recyclerView.setAdapter(recipeListAdapter);
 
         requestQueue = Volley.newRequestQueue(this);
@@ -89,7 +87,6 @@ public class RecipeListActivity extends AppCompatActivity
         intent.putExtra(EXTRA_TRANSFER, recipeCard.getRecipeCardTransfer());
         startActivity(intent);
     }
-
 
     private void parseStepsListData() {
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, RecipeListActivity.bakingUrl, null,
@@ -114,17 +111,19 @@ public class RecipeListActivity extends AppCompatActivity
                             String videoUrl = secondJsonObject.getString("videoURL");
 
                             recipeFragmentArrayList.add(new RecipeCard(shortDescription));
-                            recipeDescriptionArrayList.add(new RecipeCard(description));
-                            recipeVideoUrlArrayList.add(new RecipeCard(videoUrl));
+                            recipeDescriptionArrayList.add(description);
+                            recipeVideoUrlArrayList.add(videoUrl);
                         }
 
-                        recipeListAdapter = new RecipeListAdapter(this, recipeFragmentArrayList, twoPaneController);
+                        recipeListAdapter = new RecipeListAdapter(this, recipeFragmentArrayList);
                         recyclerView.setAdapter(recipeListAdapter);
                         recipeListAdapter.setOnRecipeFragmentClickListener(position -> {
 
                             if (twoPaneController) {
                                 Bundle arguments = new Bundle();
-                                arguments.putInt(RecipeDetailFragment.TRANSFER_ID, position);
+                                arguments.putInt(RecipeDetailFragment.POSITION_ID, position);
+                                arguments.putString(RecipeDetailFragment.DESCRIPTION_ID, recipeDescriptionArrayList.get(position));
+                                arguments.putString(RecipeDetailFragment.VIDEO_URL_ID, recipeVideoUrlArrayList.get(position));
                                 RecipeDetailFragment fragment = new RecipeDetailFragment();
                                 fragment.setArguments(arguments);
                                 parentActivity.getSupportFragmentManager().beginTransaction()
@@ -132,13 +131,10 @@ public class RecipeListActivity extends AppCompatActivity
                                         .commit();
                             } else {
                                 Intent intent1 = new Intent(this, RecipeDetailActivity.class);
-                                RecipeCard recipeCard1 = recipeDescriptionArrayList.get(position);
-                                RecipeCard recipeCard2 = recipeVideoUrlArrayList.get(position);
-
-                                intent1.putExtra(EXTRA_DESCRIPTION, recipeCard1.getRecipeCardTitles());
-                                intent1.putExtra(EXTRA_VIDEO_URL, recipeCard2.getRecipeCardTitles());
+                                intent1.putExtra(RecipeDetailFragment.POSITION_ID, position);
+                                intent1.putExtra(RecipeDetailFragment.DESCRIPTION_ID, recipeDescriptionArrayList.get(position));
+                                intent1.putExtra(RecipeDetailFragment.VIDEO_URL_ID, recipeVideoUrlArrayList.get(position));
                                 startActivity(intent1);
-
                             }
 
                         });

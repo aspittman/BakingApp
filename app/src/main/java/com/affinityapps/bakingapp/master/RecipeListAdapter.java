@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,10 +21,8 @@ import java.util.List;
 public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.RecipeListFragmentViewHolder> {
 
     private ArrayList<RecipeCard> recipeFragmentArrayList;
-    private Context context;
+    private RecipeListActivity recipeListActivity;
     private OnRecipeFragmentClickListener listener;
-    private List<RecipeCard> recipeCardList;
-    private boolean twoPaneController;
 
     public interface OnRecipeFragmentClickListener {
         void onRecipeFragmentClick(int position);
@@ -34,11 +33,10 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
     }
 
 
-    public RecipeListAdapter(Context context, List<RecipeCard> recipeCardList, boolean twoPaneController) {
+    public RecipeListAdapter(RecipeListActivity recipeListActivity, ArrayList<RecipeCard> recipeFragmentArrayList) {
 
-        this.context = context;
-        this.recipeCardList = recipeCardList;
-        this.twoPaneController = twoPaneController;
+        this.recipeListActivity = recipeListActivity;
+        this.recipeFragmentArrayList = recipeFragmentArrayList;
     }
 
 

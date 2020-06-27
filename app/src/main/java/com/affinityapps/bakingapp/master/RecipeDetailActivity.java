@@ -17,6 +17,7 @@ import com.affinityapps.bakingapp.R;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
@@ -33,8 +34,12 @@ public class RecipeDetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             Bundle arguments = new Bundle();
-            arguments.putString(RecipeDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(RecipeDetailFragment.ARG_ITEM_ID));
+            arguments.putString(RecipeDetailFragment.POSITION_ID,
+                    getIntent().getStringExtra(RecipeDetailFragment.POSITION_ID));
+            arguments.putString(RecipeDetailFragment.DESCRIPTION_ID,
+                    getIntent().getStringExtra(RecipeDetailFragment.DESCRIPTION_ID));
+            arguments.putString(RecipeDetailFragment.VIDEO_URL_ID,
+                    getIntent().getStringExtra(RecipeDetailFragment.VIDEO_URL_ID));
             RecipeDetailFragment fragment = new RecipeDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

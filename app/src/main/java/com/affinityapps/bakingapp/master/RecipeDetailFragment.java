@@ -23,24 +23,13 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
-import java.util.Objects;
-
-import static com.affinityapps.bakingapp.master.RecipeListActivity.EXTRA_DESCRIPTION;
-import static com.affinityapps.bakingapp.master.RecipeListActivity.EXTRA_VIDEO_URL;
-
 public class RecipeDetailFragment extends Fragment {
 
-    private String description;
-    private String videoUrl;
-    private Button previousButton;
-    private Button nextButton;
-    private String finalDescription;
-    private String finalVideoUrl;
-    private Intent intent;
-    private TextView fullDescriptions;
-    private PlayerView playerView;
     private SimpleExoPlayer simpleExoPlayer;
-    public static final String TRANSFER_ID = "positionIdentifier";
+    public static final String POSITION_ID = "positionIdentifier";
+    public static final String DESCRIPTION_ID = "descriptionIdentifier";
+    public static final String VIDEO_URL_ID = "videoUrlIdentifier";
+
 
     public RecipeDetailFragment() {
 
@@ -52,11 +41,11 @@ public class RecipeDetailFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_recipe_detail, container, false);
 
-        intent = requireActivity().getIntent();
-        finalDescription = intent.getStringExtra(EXTRA_DESCRIPTION);
-        finalVideoUrl = intent.getStringExtra(EXTRA_VIDEO_URL);
+        assert getArguments() != null;
+        String finalDescription = getArguments().getString("descriptionIdentifier");
+        String finalVideoUrl = getArguments().getString("videoUrlIdentifier");
 
-        playerView = rootView.findViewById(R.id.baking_video_player);
+        PlayerView playerView = rootView.findViewById(R.id.baking_video_player);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(getActivity());
         playerView.setPlayer(simpleExoPlayer);
 
@@ -67,7 +56,7 @@ public class RecipeDetailFragment extends Fragment {
         simpleExoPlayer.prepare(videoSource);
         simpleExoPlayer.setPlayWhenReady(true);
 
-        fullDescriptions = rootView.findViewById(R.id.baking_full_descriptions);
+        TextView fullDescriptions = rootView.findViewById(R.id.baking_full_descriptions);
         fullDescriptions.setText(finalDescription);
 
         return rootView;

@@ -54,9 +54,7 @@ public class RecipeListActivity extends AppCompatActivity
         toolbar.setTitle(getTitle());
 
 
-        if (findViewById(R.id.item_detail_container) != null) {
-            twoPaneController = true;
-        }
+        twoPaneController = findViewById(R.id.item_detail_container) != null;
 
         recyclerView = findViewById(R.id.recipe_master_recyclerview);
         assert recyclerView != null;

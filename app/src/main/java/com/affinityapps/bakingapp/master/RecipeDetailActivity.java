@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
-
 import com.affinityapps.bakingapp.R;
 
 public class RecipeDetailActivity extends AppCompatActivity {
@@ -34,8 +32,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
 
             Bundle arguments = new Bundle();
-            arguments.putString(RecipeDetailFragment.POSITION_ID,
-                    getIntent().getStringExtra(RecipeDetailFragment.POSITION_ID));
             arguments.putString(RecipeDetailFragment.DESCRIPTION_ID,
                     getIntent().getStringExtra(RecipeDetailFragment.DESCRIPTION_ID));
             arguments.putString(RecipeDetailFragment.VIDEO_URL_ID,

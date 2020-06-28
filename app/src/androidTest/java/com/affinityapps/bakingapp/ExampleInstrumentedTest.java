@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.rule.ActivityTestRule;
 
 import com.affinityapps.bakingapp.recipes.MainActivity;
 
@@ -32,17 +33,10 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class ExampleInstrumentedTest {
-//    @Rule
-//    public ActivityTestRule activityRule =
-//            new ActivityTestRule(MainActivity.class);
+    @Rule
+    public ActivityTestRule activityRule =
+            new ActivityTestRule(MainActivity.class);
 
-    @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
-        assertEquals("com.affinityapps.bakingapp", appContext.getPackageName());
-    }
 
     @Test
     public void recipeCardListTest() {
@@ -53,11 +47,14 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void recipeListActivityTest() {
+        onView(withId(R.id.recipe_recyclerview)).perform(click());
         onView(withId(R.id.recipe_master_recyclerview)).check(matches(isDisplayed()));
     }
 
     @Test
     public void ingredientsListFragmentTest() {
+        onView(withId(R.id.recipe_recyclerview)).perform(click());
+        onView(withId(R.id.recipe_ingredients_text)).perform(click());
         onView(withId(R.id.ingredients_recyclerview)).check(matches(isDisplayed()));
     }
 }

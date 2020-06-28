@@ -26,7 +26,6 @@ import com.google.android.exoplayer2.util.Util;
 public class RecipeDetailFragment extends Fragment {
 
     private SimpleExoPlayer simpleExoPlayer;
-    public static final String POSITION_ID = "positionIdentifier";
     public static final String DESCRIPTION_ID = "descriptionIdentifier";
     public static final String VIDEO_URL_ID = "videoUrlIdentifier";
 

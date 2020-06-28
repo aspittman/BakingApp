@@ -116,10 +116,8 @@ public class RecipeListActivity extends AppCompatActivity
                         recipeListAdapter = new RecipeListAdapter(this, recipeFragmentArrayList);
                         recyclerView.setAdapter(recipeListAdapter);
                         recipeListAdapter.setOnRecipeFragmentClickListener(position -> {
-
                             if (twoPaneController) {
                                 Bundle arguments = new Bundle();
-                                arguments.putInt(RecipeDetailFragment.POSITION_ID, position);
                                 arguments.putString(RecipeDetailFragment.DESCRIPTION_ID, recipeDescriptionArrayList.get(position));
                                 arguments.putString(RecipeDetailFragment.VIDEO_URL_ID, recipeVideoUrlArrayList.get(position));
                                 RecipeDetailFragment fragment = new RecipeDetailFragment();
@@ -129,12 +127,10 @@ public class RecipeListActivity extends AppCompatActivity
                                         .commit();
                             } else {
                                 Intent intent1 = new Intent(this, RecipeDetailActivity.class);
-                                intent1.putExtra(RecipeDetailFragment.POSITION_ID, position);
                                 intent1.putExtra(RecipeDetailFragment.DESCRIPTION_ID, recipeDescriptionArrayList.get(position));
                                 intent1.putExtra(RecipeDetailFragment.VIDEO_URL_ID, recipeVideoUrlArrayList.get(position));
                                 startActivity(intent1);
                             }
-
                         });
 
                     } catch (JSONException e) {

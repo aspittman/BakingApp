@@ -58,7 +58,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
                         listener.onRecipeFragmentClick(position);
                     }
                 }
-
             });
         }
     }

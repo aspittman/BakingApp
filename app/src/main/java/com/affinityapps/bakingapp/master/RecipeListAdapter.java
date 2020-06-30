@@ -34,7 +34,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
 
 
     public RecipeListAdapter(RecipeListActivity recipeListActivity, ArrayList<RecipeCard> recipeFragmentArrayList) {
-
         this.recipeListActivity = recipeListActivity;
         this.recipeFragmentArrayList = recipeFragmentArrayList;
     }

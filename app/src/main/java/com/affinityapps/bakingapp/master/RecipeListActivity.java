@@ -35,7 +35,6 @@ public class RecipeListActivity extends AppCompatActivity
     private Boolean twoPaneController;
     private RequestQueue requestQueue;
     private RecyclerView recyclerView;
-    private RecipeListActivity parentActivity;
     private ArrayList<RecipeCard> recipeFragmentArrayList;
     private ArrayList<String> recipeDescriptionArrayList;
     private ArrayList<String> recipeVideoUrlArrayList;
@@ -53,7 +52,7 @@ public class RecipeListActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-
+        RecipeListActivity recipeListActivity = new RecipeListActivity();
         twoPaneController = findViewById(R.id.item_detail_container) != null;
 
         recyclerView = findViewById(R.id.recipe_master_recyclerview);
@@ -72,7 +71,7 @@ public class RecipeListActivity extends AppCompatActivity
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        recipeListAdapter = new RecipeListAdapter(this, recipeFragmentArrayList);
+        recipeListAdapter = new RecipeListAdapter(recipeListActivity, recipeFragmentArrayList);
         recyclerView.setAdapter(recipeListAdapter);
 
         requestQueue = Volley.newRequestQueue(this);
@@ -122,7 +121,7 @@ public class RecipeListActivity extends AppCompatActivity
                                 arguments.putString(RecipeDetailFragment.VIDEO_URL_ID, recipeVideoUrlArrayList.get(position));
                                 RecipeDetailFragment fragment = new RecipeDetailFragment();
                                 fragment.setArguments(arguments);
-                                parentActivity.getSupportFragmentManager().beginTransaction()
+                                getSupportFragmentManager().beginTransaction()
                                         .replace(R.id.item_detail_container, fragment)
                                         .commit();
                             } else {

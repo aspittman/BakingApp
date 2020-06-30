@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.affinityapps.bakingapp.R;
 import com.affinityapps.bakingapp.RecipeCard;
+import com.affinityapps.bakingapp.databinding.FragmentIngredientsListBinding;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -32,6 +33,7 @@ public class IngredientsListFragment extends Fragment {
 
     private RequestQueue requestQueue;
     private RecyclerView recyclerView;
+    private FragmentIngredientsListBinding binding;
     private IngredientsListAdapter ingredientsListAdapter;
     private ArrayList<RecipeCard> ingredientsArrayList;
     private static final String bakingUrl = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
@@ -40,11 +42,12 @@ public class IngredientsListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_ingredients_list, container, false);
+        binding = FragmentIngredientsListBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
         ingredientsArrayList = new ArrayList<>();
 
-        recyclerView = root.findViewById(R.id.ingredients_recyclerview);
+        recyclerView = binding.ingredientsRecyclerview;
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
@@ -52,6 +55,12 @@ public class IngredientsListFragment extends Fragment {
         requestQueue = Volley.newRequestQueue(requireActivity());
         parseIngredientsListData();
         return root;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     private void parseIngredientsListData() {

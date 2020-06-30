@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.affinityapps.bakingapp.databinding.FragmentRecipeCardBinding;
 import com.affinityapps.bakingapp.master.RecipeListActivity;
 import com.affinityapps.bakingapp.R;
 import com.affinityapps.bakingapp.RecipeCard;
@@ -33,6 +34,7 @@ public class RecipeCardFragment extends Fragment
     private Context context;
     private RequestQueue requestQueue;
     private RecyclerView recyclerView;
+    private FragmentRecipeCardBinding binding;
     private RecipeCardAdapter recipeCardAdapter;
     private ArrayList<RecipeCard> recipeCardArrayList;
     public static final String EXTRA_ID = "recipeCardId";
@@ -42,12 +44,13 @@ public class RecipeCardFragment extends Fragment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_recipe, container, false);
 
+        binding = FragmentRecipeCardBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
         recipeCardArrayList = new ArrayList<>();
 
-        recyclerView = root.findViewById(R.id.recipe_recyclerview);
+        recyclerView = binding.recipeRecyclerview;
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 1));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -56,6 +59,12 @@ public class RecipeCardFragment extends Fragment
         parseRecipeCardData();
 
         return root;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     private void parseRecipeCardData() {

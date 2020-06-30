@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.affinityapps.bakingapp.R;
 import com.affinityapps.bakingapp.RecipeCard;
+import com.affinityapps.bakingapp.databinding.ActivityRecipeListBinding;
 import com.affinityapps.bakingapp.ingredients.IngredientsListActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +36,7 @@ public class RecipeListActivity extends AppCompatActivity
     private Boolean twoPaneController;
     private RequestQueue requestQueue;
     private RecyclerView recyclerView;
+    private ActivityRecipeListBinding binding;
     private ArrayList<RecipeCard> recipeFragmentArrayList;
     private ArrayList<String> recipeDescriptionArrayList;
     private ArrayList<String> recipeVideoUrlArrayList;
@@ -46,16 +48,20 @@ public class RecipeListActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe_list);
+        binding = ActivityRecipeListBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
+        binding.toolbar.setTitle(getTitle());
+        setSupportActionBar(binding.toolbar);
 
         RecipeListActivity recipeListActivity = new RecipeListActivity();
         twoPaneController = findViewById(R.id.item_detail_container) != null;
 
         recyclerView = findViewById(R.id.recipe_master_recyclerview);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
         assert recyclerView != null;
 
         TextView recipeIngredientsTitle = findViewById(R.id.recipe_ingredients_text);
@@ -64,12 +70,6 @@ public class RecipeListActivity extends AppCompatActivity
         recipeFragmentArrayList = new ArrayList<>();
         recipeDescriptionArrayList = new ArrayList<>();
         recipeVideoUrlArrayList = new ArrayList<>();
-
-        recyclerView = findViewById(R.id.recipe_master_recyclerview);
-        recyclerView.setHasFixedSize(true);
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
 
         recipeListAdapter = new RecipeListAdapter(recipeListActivity, recipeFragmentArrayList);
         recyclerView.setAdapter(recipeListAdapter);

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#09C"
+    android:padding="8dp">
+
+    <Button
+        android:id="@+id/baking_widget_ingredients_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nav_header_title"
+        android:layout_centerInParent="true"/>
+<!--    <StackView-->
+<!--        android:id="@+id/baking_widget_stack_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:loopViews="true" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/baking_widget_ingredients_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@color/colorLightPeach"-->
+<!--        android:text="@string/nav_header_title"-->
+<!--        android:textSize="30sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:gravity="center" />-->
+
+</RelativeLayout>

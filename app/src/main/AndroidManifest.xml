@@ -15,6 +15,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity android:name=".widget.BakingAppWidgetConfig"></activity>
         <activity android:name=".ingredients.IngredientsListActivity" />
         <activity android:name=".master.RecipeListActivity" />
         <activity android:name=".master.RecipeDetailActivity" />
@@ -25,14 +26,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver android:name=".widget.BakingAppWidgetProvider">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/baking_appwidget_info"/>
+                android:resource="@xml/baking_appwidget_info" />
         </receiver>
+
+        <service
+            android:name=".widget.BakingAppWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

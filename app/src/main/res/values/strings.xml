@@ -4,7 +4,7 @@
     <string name="back_selection">Previous</string>
     <string name="next_selection">Next</string>
 
-<!--Navigation Drawer-->
+    <!--Navigation Drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Baking App</string>
@@ -12,7 +12,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-<!--Navigation Drawer Options -->
+    <!--Navigation Drawer Options -->
     <string name="menu_home">Home</string>
     <string name="menu_steps">Steps</string>
     <string name="menu_ingredients">Ingredients</string>

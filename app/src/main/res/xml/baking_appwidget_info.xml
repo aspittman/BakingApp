@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:minWidth="40dp"
-    android:minHeight="40dp"
+    android:minWidth="110dp"
+    android:minHeight="110dp"
+    android:minResizeHeight="40dp"
     android:updatePeriodMillis="36000000"
-    android:previewImage="@drawable/ic_restaurant_black_24dp"
+    android:previewImage="@drawable/ic_restaurant_menu_black_24dp"
     android:initialLayout="@layout/baking_widget"
-    android:configure="com.affinityapps.bakingapp.widget.BakingAppWidgetProvider"
-    android:resizeMode="horizontal|vertical"
+    android:resizeMode="vertical|horizontal"
     android:widgetCategory="home_screen"
-    tools:targetApi="jelly_bean_mr1">
-</appwidget-provider>
+    tools:targetApi="jelly_bean_mr1"/>

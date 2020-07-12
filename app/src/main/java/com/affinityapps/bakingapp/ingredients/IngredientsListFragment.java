@@ -69,7 +69,7 @@ public class IngredientsListFragment extends Fragment {
                     try {
 
                         assert getArguments() != null;
-                        int recipeCardTransfer = getArguments().getInt("transferPosition");
+                        int recipeCardTransfer = getArguments().getInt("transferPosition", 0);
 
                         JSONObject jsonObject = response.getJSONObject(recipeCardTransfer);
 

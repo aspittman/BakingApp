@@ -15,7 +15,7 @@ import com.affinityapps.bakingapp.ingredients.IngredientsListFragment;
 import com.affinityapps.bakingapp.recipes.MainActivity;
 import com.affinityapps.bakingapp.recipes.RecipeCardFragment;
 
-class BakingAppWidgetProvider extends AppWidgetProvider {
+public class BakingAppWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {

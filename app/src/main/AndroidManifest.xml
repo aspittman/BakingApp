@@ -15,7 +15,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".widget.BakingAppWidgetConfig"></activity>
         <activity android:name=".ingredients.IngredientsListActivity" />
         <activity android:name=".master.RecipeListActivity" />
         <activity android:name=".master.RecipeDetailActivity" />
